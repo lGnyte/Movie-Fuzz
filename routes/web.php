@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
 
+Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])
+    ->name('login');
+
 // Route::match(['get','post'], '/my-profile', [App\Http\Controllers\HomeController::class, 'test']) -> name('test');
 
 

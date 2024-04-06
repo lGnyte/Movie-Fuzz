@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.default')
 @section('title', 'Home Page')
 @section('breadcrumbs')
   <div class="select-none">
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-  <h1 class="my-4 text-4xl font-bold font-title">Welcome to <span class="text-accent">MovieFuzz</span>!</h1>
+  <h2 class="my-4 text-4xl font-bold font-title">Welcome to <span class="text-accent">MovieFuzz</span>!</h2>
   <p class="mb-2 text-xl font-semibold">Explore a variety of movies based on... <span class="text-2xl font-title text-bold">Quirky Reviews</span>!</p>
   <p class="text-lg">Instead of generic ratings, users categorize movies with fun and quirky labels. Select your next movie based on the labels you love!</p>
   <hr class="my-6">
