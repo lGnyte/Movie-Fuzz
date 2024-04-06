@@ -5,11 +5,15 @@
   <form class="px-8 py-4 mx-auto mt-10 bg-white shadow-md select-none rounded-xl w-96">
     <x-mdi-account-circle-outline class="mx-auto mb-10 w-28 h-28 text-accent" />
     <label class="flex items-center w-full p-2 mb-2 border-gray-700 rounded-lg bg-surface">
-      <x-mdi-account class="w-8 h-8 pr-2 text-gray-500 border-r" />
+      <span>
+        <x-mdi-account class="w-8 h-8 pr-2 text-gray-500 border-r" />
+      </span>
       <input type="text" name="username" id="username" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="Username" required>
     </label>
     <label class="flex items-center w-full p-2 mb-1 border-gray-700 rounded-lg bg-surface">
-      <x-mdi-lock class="w-8 h-8 pr-2 text-gray-500 border-r" />
+      <span>
+        <x-mdi-lock class="w-8 h-8 pr-2 text-gray-500 border-r" />
+      </span>
       <input type="password" name="password" id="password" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="Password" required>
     </label>
     <div class="flex justify-between text-xs font-semibold text-accent">
