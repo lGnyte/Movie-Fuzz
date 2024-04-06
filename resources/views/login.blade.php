@@ -2,7 +2,7 @@
 @section('title', 'Sign In')
 @section('content')
   <h2 class="inline-block text-4xl font-bold border-b-4 border-accent font-title">Sign In to Your Account</h2>
-  <form class="px-8 py-4 mx-auto mt-10 bg-white shadow-md rounded-xl w-96">
+  <form class="px-8 py-4 mx-auto mt-10 bg-white shadow-md select-none rounded-xl w-96">
     <x-mdi-account-circle-outline class="mx-auto mb-10 w-28 h-28 text-accent" />
     <label class="flex items-center w-full p-2 mb-2 border-gray-700 rounded-lg bg-surface">
       <x-mdi-account class="w-8 h-8 pr-2 text-gray-500 border-r" />
@@ -19,7 +19,7 @@
       </div>
       <a>Forgot password?</a>
     </div>
-    <button type="submit" class="w-full py-2 mt-10 text-xl font-bold text-white rounded-lg bg-accent">Sign In</button>
-    <p class="mt-4 text-center">Don't have an account? <a class="font-semibold text-accent">Register</a></p>
+    <button type="submit" class="w-full py-2 mt-10 text-xl font-bold text-white duration-200 rounded-lg bg-accent hover:bg-secondary">Sign In</button>
+    <p class="mt-4 text-center">Don't have an account? <a href="{{ route('register') }}" class="font-semibold text-accent">Register</a></p>
   </form>
 @endsection

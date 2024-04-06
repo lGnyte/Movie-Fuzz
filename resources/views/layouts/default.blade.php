@@ -32,7 +32,7 @@
       </button>
       <input type="text" name="search" id="search" placeholder="Search movies, lables or users" class="flex-1 py-2 pl-3 ml-4 rounded-r-full bg-surface focus:outline-none focus:ring-1 focus:ring-primary">
     </form>
-    <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white rounded-lg font-lg bg-accent">Sign In</a>
+    <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign In</a>
   </header>
   
   <main class="p-4">
