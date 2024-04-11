@@ -16,6 +16,27 @@
       <x-mdi-label-multiple-outline class="w-6 h-6 text-white" />
       Labels
     </a>
+    <hr class="mx-8 my-1 border-gray-700">
+    @auth
+    <a class="cursor-pointer hover:bg-secondary">
+      <x-mdi-account class="w-6 h-6 text-white" />
+      Profile
+    </a>
+    <a class="cursor-pointer hover:bg-secondary" href="{{ route('logout') }}">
+      <x-mdi-logout class="w-6 h-6 text-white" />
+      Sign Out
+    </a>
+    @endauth
+    @guest
+    <a href="{{ route('login') }}" class="hover:bg-secondary">
+      <x-mdi-login class="w-6 h-6 text-white" />
+      Sign In
+    </a>
+    <a href="{{ route('register') }}" class="hover:bg-secondary">
+      <x-mdi-account-plus class="w-6 h-6 text-white" />
+      Register
+    </a>
+    @endguest
   </div>
   <hr class="mt-auto">
   <div class="my-4 text-center">
@@ -32,7 +53,21 @@
       </button>
       <input type="text" name="search" id="search" placeholder="Search movies, lables or users" class="flex-1 py-2 pl-3 ml-4 rounded-r-full bg-surface focus:outline-none focus:ring-1 focus:ring-primary">
     </form>
-    <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign In</a>
+    @guest
+      <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign In</a>
+    @endguest
+    @auth
+      <div class="flex items-center ml-auto">
+        <a class="flex items-center mr-4">
+          <x-mdi-account-circle class="w-10 h-10 text-accent" />
+          <span class="ml-2 font-semibold text-accent">{{ auth()->user()->name }}</span>
+        </a>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="px-4 py-2 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign Out</button>
+        </form>
+      </div>
+    @endauth
   </header>
   
   <main class="p-4">

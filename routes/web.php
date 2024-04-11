@@ -1,23 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\RequireAuthentication;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])
-    ->name('login');
+    ->name('login')
+    ->middleware(RedirectIfAuthenticated::class);
 Route::post('/login', [App\Http\Controllers\LoginController::class, 'submit'])
     ->name('login.submit');
 
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'index'])
-    ->name('register');
+    ->name('register')
+    ->middleware(RedirectIfAuthenticated::class);
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'submit'])
     ->name('register.submit');
 
-Route::post('/logout', [App\Http\Controllers\LogoutController::class, 'destroy'])
+Route::match(['get','post'], '/logout', [App\Http\Controllers\LogoutController::class, 'destroy'])
     ->name('logout')
-    ->middleware('auth');
+    ->middleware(RequireAuthentication::class);
 
 Route::get('/forgot-password', [App\Http\Controllers\ForgotPasswordController::class, 'index'])
     ->name('password.reset');
