@@ -22,12 +22,18 @@
         <input type="checkbox" name="remember" id="remember" class="mr-1">
         <label for="remember">Remember me</label>
       </div>
-      <a>Forgot password?</a>
+      <a href="{{ route('password.reset') }}">Forgot password?</a>
     </div>
 
     @if ($errors->any())
       <div class="px-2 py-1 mt-4 font-semibold text-left text-red-500 border border-red-300 rounded-lg">
         <p>{{ $errors->first() }}</p>
+      </div>
+    @endif
+
+    @if (session('status'))
+      <div class="px-2 py-1 mt-4 font-semibold text-left text-green-500 border border-green-300 rounded-lg">
+        <p>{{ session('status') }}</p>
       </div>
     @endif
 

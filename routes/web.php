@@ -19,8 +19,10 @@ Route::post('/logout', [App\Http\Controllers\LogoutController::class, 'destroy']
     ->name('logout')
     ->middleware('auth');
 
+Route::get('/forgot-password', [App\Http\Controllers\ForgotPasswordController::class, 'index'])
+    ->name('password.reset');
 Route::post('/forgot-password', [App\Http\Controllers\ForgotPasswordController::class, 'submit'])
-    ->name('forgot-password');
+    ->name('forgot-password.submit');
 Route::post('/forgot-password/{token}', [App\Http\Controllers\ForgotPasswordController::class, 'reset'])
     ->name('forgot-password.reset');
 
