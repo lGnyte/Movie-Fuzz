@@ -20,6 +20,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|min:4',
+            'username' => 'required|min:4|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
             'terms' => 'accepted',
@@ -27,6 +28,9 @@ class RegisterController extends Controller
             'terms.accepted' => 'You must agree to the terms.',
             'name.required' => 'Please enter your name.',
             'name.min' => 'The name must be at least 4 characters long.',
+            'username.required' => 'Please enter a username.',
+            'username.min' => 'The username must be at least 4 characters long.',
+            'username.unique' => 'The username is already taken.',
             'email.required' => 'Please enter your email address.',
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'This email address is already registered.',
@@ -38,6 +42,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
 

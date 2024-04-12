@@ -9,7 +9,7 @@
       <span>
         <x-mdi-email class="w-8 h-8 pr-2 text-gray-500 border-r" />
       </span>
-      <input type="email" name="email" id="email" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="E-mail" required value="{{ old('email') }}">
+      <input type="text" name="login" id="login" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="E-mail or Username" required value="{{ old('login') }}">
     </label>
     <label class="flex items-center w-full p-2 mb-1 border-gray-700 rounded-lg bg-surface">
       <span>

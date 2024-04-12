@@ -13,6 +13,12 @@
     </label>
     <label class="flex items-center w-full p-2 mb-2 border-gray-700 rounded-lg bg-surface">
       <span>
+        <x-mdi-account-group class="w-8 h-8 pr-2 text-gray-500 border-r" />
+      </span>
+      <input type="text" name="username" id="username" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="Username" required value="{{ old('username') }}">
+    </label>
+    <label class="flex items-center w-full p-2 mb-2 border-gray-700 rounded-lg bg-surface">
+      <span>
         <x-mdi-email class="w-8 h-8 pr-2 text-gray-500 border-r" />
       </span>
       <input type="email" name="email" id="email" class="flex-1 px-3 text-lg bg-transparent focus:outline-none" placeholder="E-mail" required value="{{ old('email') }}">

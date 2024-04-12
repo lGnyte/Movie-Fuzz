@@ -47,26 +47,24 @@
 <div class="flex flex-col ml-64">
   <header class="flex items-center h-16 px-6 bg-white shadow-sm">
     @yield('breadcrumbs')
-    <form class="inline-flex items-center pl-4 ml-auto rounded-full select-none w-96 bg-surface">
+    <form class="inline-flex items-center pl-4 ml-auto mr-6 rounded-full select-none w-96 bg-surface">
       <button type="submit">
         <x-fas-search class="w-6 h-6 text-accent"/>
       </button>
-      <input type="text" name="search" id="search" placeholder="Search movies, lables or users" class="flex-1 py-2 pl-3 ml-4 rounded-r-full bg-surface focus:outline-none focus:ring-1 focus:ring-primary">
+      <input type="text" name="search" id="search" placeholder="Search movies, labels or users" class="flex-1 py-2 pl-3 ml-4 rounded-r-full bg-surface focus:outline-none focus:ring-1 focus:ring-primary">
     </form>
     @guest
       <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign In</a>
     @endguest
     @auth
-      <div class="flex items-center ml-auto">
-        <a class="flex items-center mr-4">
-          <x-mdi-account-circle class="w-10 h-10 text-accent" />
-          <span class="ml-2 font-semibold text-accent">{{ auth()->user()->name }}</span>
-        </a>
-        <form action="{{ route('logout') }}" method="POST">
-          @csrf
-          <button type="submit" class="px-4 py-2 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign Out</button>
-        </form>
-      </div>
+      <a class="flex items-center mr-4">
+        <x-mdi-account-circle class="w-10 h-10 text-accent" />
+        <span class="ml-2 font-semibold text-accent">{{ auth()->user()->name }}</span>
+      </a>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="px-4 py-2 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign Out</button>
+      </form>
     @endauth
   </header>
   

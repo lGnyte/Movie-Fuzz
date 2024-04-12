@@ -17,22 +17,29 @@ class LoginController extends Controller
     {
 
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'login' => 'required|string',
+            'password' => 'required|string',
         ], [
-            'email.required' => 'Please enter your email address.',
-            'email.email' => 'Please enter a valid email address.',
+            'login.required' => 'Please enter your email or username.',
             'password.required' => 'Please enter your password.',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $loginField = $request->input('login');
+
+        $field = filter_var($loginField, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    
+        $credentials = [
+            $field => $loginField,
+            'password' => $request->input('password'),
+        ];
+    
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return Redirect::route('home');
+            return redirect()->route('home');
         }
-
+    
         return back()->withErrors([
-            'email' => 'Wrong email or password.',
+            'login' => 'Wrong email or password.',
         ]);
     }
 }
