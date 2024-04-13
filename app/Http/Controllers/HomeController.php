@@ -8,16 +8,6 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('home', ['name' => $request->get('name', 'no name')]);
+        return view('home');
     }
-
-    // public function test()
-    // {
-    //     return view('fp.test');
-    // }
-
-    // public function user(Request $request, $username)
-    // {
-    //     return view('welcome', ['name' => $username]);
-    // }
 }
