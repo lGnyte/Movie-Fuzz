@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -15,14 +16,8 @@ class ForgotPasswordController extends Controller
         return view('forgot-password');
     }
 
-    public function submit(Request $request)
+    public function submit(ForgotPasswordRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ], [
-            'email.exists' => 'This email is not registered.',
-        ]);
-
         $status = Password::sendResetLink(
             $request->only('email')
         );
@@ -34,14 +29,8 @@ class ForgotPasswordController extends Controller
         }
     }
 
-    public function reset(Request $request)
+    public function reset(ResetPasswordRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required|confirmed|min:8',
-            'token' => 'required',
-        ]);
-
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -13,17 +13,8 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function submit(Request $request)
+    public function submit(LoginRequest $request)
     {
-
-        $request->validate([
-            'login' => 'required|string',
-            'password' => 'required|string',
-        ], [
-            'login.required' => 'Please enter your email or username.',
-            'password.required' => 'Please enter your password.',
-        ]);
-
         $loginField = $request->input('login');
 
         $field = filter_var($loginField, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
@@ -35,7 +26,7 @@ class LoginController extends Controller
     
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('home');
+            return Redirect::route('home');
         }
     
         return back()->withErrors([
