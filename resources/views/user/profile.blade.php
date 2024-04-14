@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', $userData->username)
+@section('title', $userData->name)
 @section('breadcrumbs')
   <div class="select-none">
     &lt;
@@ -21,10 +21,15 @@
         <p class="text-lg font-semibold">Joined: <span class="font-normal">{{ $userData->created_at->diffForHumans() }}</span></p>
       </div>
       @if ($isOwner === true)
-        <a class="flex items-center px-2 py-1 mt-2 text-lg duration-200 border rounded-md hover:bg-secondary hover:bg-opacity-10 border-secondary text-secondary">
+        <a href="{{ route('user-profile.edit', ['username' => request()->username]) }}" class="flex items-center px-2 py-1 mt-2 text-lg duration-200 border rounded-md hover:bg-secondary hover:bg-opacity-10 border-secondary text-secondary">
           <x-mdi-account-edit class="w-6 h-6" />
           <span class="ml-2">Edit profile</span>
         </a>
+      @endif
+      @if (session('success'))
+        <div class="px-2 py-1 mt-2 font-semibold text-left text-green-500 border border-green-300 rounded-lg">
+          <p>{{ session('success') }}</p>
+        </div>
       @endif
     </div>
     <div class="flex-1 px-10 border-l">

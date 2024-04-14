@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RequireAuthentication;
+use App\Http\Middleware\RequireOwner;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
@@ -32,3 +33,10 @@ Route::post('/forgot-password/{token}', [App\Http\Controllers\ForgotPasswordCont
 
 Route::get('/user/{username}', [App\Http\Controllers\UserController::class, 'index'])
     ->name('user-profile.show');
+Route::get('/user/{username}/edit', [App\Http\Controllers\UserController::class, 'edit'])
+    ->name('user-profile.edit')
+    ->middleware(RequireOwner::class);
+Route::post('/user/{username}/edit', [App\Http\Controllers\UserController::class, 'update'])
+    ->name('user-profile.update')
+    ->middleware(RequireOwner::class);
+

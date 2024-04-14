@@ -21,4 +21,11 @@ class UserService
     {
         return $user && $user->id === $userData->id;
     }
+
+    public function update(User $userData, $data)
+    {
+        $userData->update($data);
+
+        return $userData;
+    }
 }
