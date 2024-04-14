@@ -57,14 +57,10 @@
       <a href="{{ route('login') }}" class="px-4 py-2 ml-10 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign In</a>
     @endguest
     @auth
-      <a class="flex items-center mr-4">
-        <x-mdi-account-circle class="w-10 h-10 text-accent" />
-        <span class="ml-2 font-semibold text-accent">{{ auth()->user()->name }}</span>
+      <a href="{{ route('user-profile.show', ['username' => auth()->user()->username]) }}" class="flex items-center cursor-pointer px-2 rounded-lg py-0.5 hover:bg-secondary hover:bg-opacity-30 duration-200">
+        <span class="mr-2 font-semibold text-accent">{{ substr(auth()->user()->username, 0, 10) }}</span>
+        <x-mdi-account-circle class="w-8 h-8 text-accent" />
       </a>
-      <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit" class="px-4 py-2 font-bold text-white duration-200 rounded-lg font-lg bg-accent hover:bg-secondary">Sign Out</button>
-      </form>
     @endauth
   </header>
   

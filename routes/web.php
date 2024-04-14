@@ -30,14 +30,5 @@ Route::post('/forgot-password', [App\Http\Controllers\ForgotPasswordController::
 Route::post('/forgot-password/{token}', [App\Http\Controllers\ForgotPasswordController::class, 'reset'])
     ->name('forgot-password.reset');
 
-// Route::match(['get','post'], '/my-profile', [App\Http\Controllers\HomeController::class, 'test']) -> name('test');
-
-
-// Route::get('/user/{username}', [App\Http\Controllers\HomeController::class, 'user'])
-//     ->name('user.name');
-
-// Route::get('/form', [App\Http\Controllers\FormController::class, 'index'])
-//     ->name('form');
-
-// Route::post('/form', [App\Http\Controllers\FormController::class, 'submit'])
-//     ->name('form.submit');
+Route::get('/user/{username}', [App\Http\Controllers\UserController::class, 'index'])
+    ->name('user-profile.show');
