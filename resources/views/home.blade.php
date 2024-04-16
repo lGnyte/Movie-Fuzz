@@ -9,24 +9,29 @@
 @endsection
 
 @section('content')
+@guest
   <h2 class="my-4 text-4xl font-bold font-title">Welcome to <span class="text-accent">MovieFuzz</span>!</h2>
   <p class="mb-2 text-xl font-semibold">Explore a variety of movies based on... <span class="text-2xl font-title text-bold">Quirky Reviews</span>!</p>
   <p class="text-lg">Instead of generic ratings, users categorize movies with fun and quirky labels. Select your next movie based on the labels you love!</p>
+@endguest
+@auth
+  <h2 class="my-4 text-4xl font-bold font-title">Welcome back, <span class="text-accent">{{ auth()->user()->name }}</span>!</h2>
+@endauth
   <hr class="my-6">
-  <h2 class="inline-block mb-4 text-2xl font-bold border-b-2 font-title border-accent">Trending Labels</h2>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    <div class="p-4 bg-white rounded-md shadow-md">
-      <h3 class="mb-2 text-xl font-semibold">Action-packed</h3>
-      <p class="text-lg">Movies that are full of action and excitement!</p>
+  @if (count($movies) > 0)
+    <h3 class="text-2xl font-bold font-title">Popular Movies Now</h3>
+    <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      @foreach ($movies as $movie)
+        <div class="flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-lg shadow-md">
+          <a href="{{ route('home') }}">
+            <img src="{{ "https://image.tmdb.org/t/p/h100" . $movie->poster_path }}" alt="{{ $movie->title }}" class="w-48 h-72 object-cover rounded-lg">
+          </a>
+          <div class="mt-4 text-center">
+            <a href="{{ route('home') }}" class="text-lg font-semibold font-title hover:text-accent duration-200">{{ $movie->title }}</a>
+            <p class="mt-2 text-sm font-semibold text-gray-600">Release date: {{ $movie->release_date }}</p>
+          </div>
+        </div>
+      @endforeach
     </div>
-    <div class="p-4 bg-white rounded-md shadow-md">
-      <h3 class="mb-2 text-xl font-semibold">Heartwarming</h3>
-      <p class="text-lg">Movies that will make you feel warm and fuzzy inside!</p>
-    </div>
-    <div class="p-4 bg-white rounded-md shadow-md">
-      <h3 class="mb-2 text-xl font-semibold">Mind-bending</h3>
-      <p class="text-lg">Movies that will make you question reality!</p>
-    </div>
-  </div>
-  <button class="font-bold text-accent">See more</button>
+  @endif
 @endsection

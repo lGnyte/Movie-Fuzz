@@ -18,7 +18,7 @@
     </a>
     <hr class="mx-8 my-1 border-gray-700">
     @auth
-    <a class="cursor-pointer hover:bg-secondary">
+    <a href="{{ route('user-profile.show', ['username'=>auth()->user()->username]) }}" class="cursor-pointer hover:bg-secondary">
       <x-mdi-account class="w-6 h-6 text-white" />
       Profile
     </a>
