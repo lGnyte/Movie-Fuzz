@@ -40,3 +40,7 @@ Route::post('/user/{username}/edit', [App\Http\Controllers\UserController::class
     ->name('user-profile.update')
     ->middleware(RequireOwner::class);
 
+Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])
+    ->name('movies');
+Route::post('/movies', [App\Http\Controllers\MovieController::class, 'search'])
+    ->name('movies.search');

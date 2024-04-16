@@ -9,7 +9,21 @@ class TMDBService
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', [
           'headers' => [
-            'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNzMxODIyNjFmNzg1OTVjMWQyY2ZjZmQxMTBlNzBlZiIsInN1YiI6IjY2MWMwNWM1NDFhNTYxMDE2MjhjMDM3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J2FCy08SIfgx763tyY4Avjm6ZlIcAmhiX3m9aE3FZmQ',
+            'Authorization' => 'Bearer ' .env('TMDB_API_KEY'),
+            'accept' => 'application/json',
+          ],
+        ]);
+
+        return json_decode($response->getBody()->getContents());
+    }
+
+    public function searchMovie($query)
+    {
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=' . $query, [
+          'headers' => [
+            'Authorization' => 'Bearer ' .env('TMDB_API_KEY'),
             'accept' => 'application/json',
           ],
         ]);

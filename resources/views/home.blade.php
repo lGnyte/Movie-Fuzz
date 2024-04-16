@@ -12,7 +12,7 @@
 @guest
   <h2 class="my-4 text-4xl font-bold font-title">Welcome to <span class="text-accent">MovieFuzz</span>!</h2>
   <p class="mb-2 text-xl font-semibold">Explore a variety of movies based on... <span class="text-2xl font-title text-bold">Quirky Reviews</span>!</p>
-  <p class="text-lg">Instead of generic ratings, users categorize movies with fun and quirky labels. Select your next movie based on the labels you love!</p>
+  <p class="text-lg">Instead of generic ratings, users categorize movies with fun and quirky reviews. Select your next movie based on the reviews from the community!</p>
 @endguest
 @auth
   <h2 class="my-4 text-4xl font-bold font-title">Welcome back, <span class="text-accent">{{ auth()->user()->name }}</span>!</h2>
