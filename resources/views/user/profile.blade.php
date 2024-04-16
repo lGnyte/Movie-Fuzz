@@ -34,7 +34,22 @@
     </div>
     <div class="flex-1 px-10 border-l">
       <h2 class="mb-4 text-2xl font-bold font-title">Movie Reviews</h2>
-      <p class="w-1/2 px-4 py-2 text-gray-600 border-2 rounded-md">User has no reviews.</p>
+      @if (!isset($reviews) || count($reviews) == 0)
+        <p class="w-1/2 px-4 py-2 text-gray-600 border-2 rounded-md">User has no reviews.</p>
+      @else
+        @foreach ($reviews as $review)
+          <div class="bg-white border shadow-sm rounded-md px-2 py-1">
+            <a href="{{ route('movies.individual', $review->movie_id) }}" class="flex items-center">
+              <img src="{{ "https://image.tmdb.org/t/p/h100" . $review->getMovie()->poster_path }}" alt="{{ $review->getMovie()->title }}" class="w-16 h-24 object-cover rounded-lg">
+              <div class="ml-4">
+                <h3 class="text-lg font-bold font-title">{{ $review->getMovie()->title }}</h3>
+                <p class="text-sm text-gray-500">Rating: {{ $review->rating }}</p>
+                <p class="text-sm text-gray-500">Review: {{ $review->title }}</p>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      @endif
     </div>
   </div>
 @endsection

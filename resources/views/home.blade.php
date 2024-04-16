@@ -19,7 +19,8 @@
 @endauth
   <hr class="my-6">
   @if (count($movies) > 0)
-    <h3 class="text-2xl font-bold font-title">Popular Movies Now</h3>
+    <h3 class="text-2xl font-bold font-title">Popular Movies Globally</h3>
+    <p>Leave your review on movies people watch now.</p>
     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       @foreach ($movies as $movie)
         <div class="flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-lg shadow-md">

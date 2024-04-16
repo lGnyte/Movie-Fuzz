@@ -22,6 +22,11 @@ class ReviewService
         return Review::where('movie_id', $movieId)->get();
     }
 
+    public function getAllByUserId($userId)
+    {
+        return Review::where('user_id', $userId)->get();
+    }
+
     public function getByMovieIdAndUserId($movieId, $userId)
     {
         return Review::where('movie_id', $movieId)

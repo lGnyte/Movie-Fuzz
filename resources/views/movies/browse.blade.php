@@ -27,7 +27,7 @@
   @else
     <div class="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       @foreach ($results as $movie)
-        <a  class="flex flex-col items-center p-4 bg-surface shadow-md rounded-xl">
+        <a href="{{ route('movies.individual', $movie->id )}}" class="flex flex-col items-center p-4 bg-surface shadow-md rounded-xl">
           <img src="{{ "https://image.tmdb.org/t/p/h100" . $movie->poster_path }}" alt="{{ $movie->title }}" class="w-48 h-72 object-cover rounded-lg">
           <h2 class="mt-4 text-xl font-bold font-title">{{ $movie->title }}</h2>
           <p class="mt-2 text-sm text-gray-500">Release date: {{ $movie->release_date }}</p>

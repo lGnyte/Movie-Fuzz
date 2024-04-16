@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Services\UserService;
 use App\Http\Requests\UpdateUserRequest;
+use App\Services\ReviewService;
 
 class UserController extends Controller
 {
-    public function index($username, UserService $userService)
+    public function index($username, UserService $userService, ReviewService $reviewService)
     {
         $userData = $userService->findByUsername($username);
 
@@ -16,11 +17,14 @@ class UserController extends Controller
         }
 
         $isOwner = $userService->isOwner(auth()->user(), $userData);
+        
+        $reviews = $reviewService->getAllByUserId($userData->id);
 
         return view('user.profile', [
             'username' => $username,
             'userData' => $userData,
             'isOwner' => $isOwner,
+            'reviews' => $reviews,
         ]);
     }
 

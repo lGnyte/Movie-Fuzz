@@ -44,6 +44,7 @@
   <header class="flex items-center h-16 px-6 bg-white shadow-sm">
     @yield('breadcrumbs')
     <form action="{{ route('movies.search') }}" method="POST" class="inline-flex items-center pl-4 ml-auto mr-6 rounded-full select-none w-96 bg-surface">
+      @csrf
       <button type="submit">
         <x-fas-search class="w-6 h-6 text-accent"/>
       </button>
