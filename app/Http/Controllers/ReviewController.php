@@ -13,4 +13,11 @@ class ReviewController extends Controller
         $reviewService->create($data);
         return redirect()->back()->with('success', 'Review submitted successfully!');
     }
+
+    public function delete(Request $request, ReviewService $reviewService)
+    {
+        $review = $reviewService->getById($request->input('review_id'));
+        $reviewService->delete($review);
+        return redirect()->back()->with('success', 'Review deleted successfully!');
+    }
 }

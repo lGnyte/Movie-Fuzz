@@ -50,3 +50,6 @@ Route::get('/movie/{id}', [App\Http\Controllers\MovieController::class, 'individ
 Route::post('/review', [App\Http\Controllers\ReviewController::class, 'submit'])
     ->name('review.submit')
     ->middleware(RequireAuthentication::class);
+Route::post('/review/delete', [App\Http\Controllers\ReviewController::class, 'delete'])
+    ->name('review.delete')
+    ->middleware(RequireAuthentication::class);

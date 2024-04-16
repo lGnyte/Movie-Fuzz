@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TMDBService;
+use App\Services\ReviewService;
 
 class MovieController extends Controller
 {
@@ -18,7 +19,7 @@ class MovieController extends Controller
         return view('movies.browse', ['results' => $results->results]);
     }
 
-    public function individual(Request $request, TMDBService $tmdbService) {
+    public function individual(Request $request, TMDBService $tmdbService, ReviewService $reviewService) {
         $id = $request->route('id');
         $movie = $tmdbService->getMovie($id);
 
@@ -26,6 +27,19 @@ class MovieController extends Controller
             abort(404);
         }
         
-        return view('movies.individual', ['movie' => $movie]);
+        $reviews = $reviewService->getAllByMovieId($id);
+        
+        if(auth()->check()) {
+            $review = $reviewService->getByMovieIdAndUserId($id, auth()->user()->id);
+            
+            //remove review of the current user from the reviews list
+            $userId = auth()->user()->id;
+            $reviews = $reviews->filter(function($review) use ($userId) {
+                return $review->user_id !== $userId;
+            });
+        }
+
+
+        return view('movies.individual', ['movie' => $movie,'reviews' => $reviews, 'review' => $review]);
     }
 }
