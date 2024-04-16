@@ -56,7 +56,7 @@
     <p class="text-lg">No reviews yet. Be the first to review this movie!</p>
   @else 
     @foreach($reviews as $review)
-    <div class="border border-gray-300 rounded-lg p-4 mt-2">
+    <div class="border bg-white border-gray-300 rounded-lg p-4 mt-2">
         <p class="text-sm text-gray-500 -mb-1">{{ $review->created_at }}</p>
         <p class="text-lg font-semibold">{{ $review->title }}</p>
         <p>By: <a href="{{ route('user-profile.show', $review->user->username) }}" class="font-semibold">{{ $review->user->name }}</a></p>
