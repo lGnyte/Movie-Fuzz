@@ -46,3 +46,7 @@ Route::post('/movies', [App\Http\Controllers\MovieController::class, 'search'])
     ->name('movies.search');
 Route::get('/movie/{id}', [App\Http\Controllers\MovieController::class, 'individual'])
     ->name('movies.individual');
+
+Route::post('/review', [App\Http\Controllers\ReviewController::class, 'submit'])
+    ->name('review.submit')
+    ->middleware(RequireAuthentication::class);
