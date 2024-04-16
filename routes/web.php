@@ -44,3 +44,5 @@ Route::get('/movies', [App\Http\Controllers\MovieController::class, 'index'])
     ->name('movies');
 Route::post('/movies', [App\Http\Controllers\MovieController::class, 'search'])
     ->name('movies.search');
+Route::get('/movie/{id}', [App\Http\Controllers\MovieController::class, 'individual'])
+    ->name('movies.individual');

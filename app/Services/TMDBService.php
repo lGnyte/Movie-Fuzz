@@ -34,14 +34,19 @@ class TMDBService
     public function getMovie($id)
     {
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.themoviedb.org/3/search/movie?query=asd&include_adult=false&language=en-US&page=1', [
+        try {
+            $response = $client->request('GET', 'https://api.themoviedb.org/3/movie/' . $id, [
           'headers' => [
-            'Authorization' => 'Bearer ' . env('TMDB_API_KEY'),
-            'accept' => 'application/json',
+              'Authorization' => 'Bearer ' . env('TMDB_API_KEY'),
+              'accept' => 'application/json',
           ],
-        ]);
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            if ($e->getResponse()->getStatusCode() === 404) {
+                return null;
+            }
+        }
 
-        dd($response->getBody()->getContents());
         return json_decode($response->getBody()->getContents());
     }
 }

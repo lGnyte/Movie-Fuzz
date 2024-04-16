@@ -23,11 +23,11 @@
     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       @foreach ($movies as $movie)
         <div class="flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-lg shadow-md">
-          <a href="{{ route('home') }}">
+          <a href="{{ route('movies.individual', $movie->id) }}">
             <img src="{{ "https://image.tmdb.org/t/p/h100" . $movie->poster_path }}" alt="{{ $movie->title }}" class="w-48 h-72 object-cover rounded-lg">
           </a>
           <div class="mt-4 text-center">
-            <a href="{{ route('home') }}" class="text-lg font-semibold font-title hover:text-accent duration-200">{{ $movie->title }}</a>
+            <a href="{{ route('movies.individual', $movie->id) }}" class="text-lg font-semibold font-title hover:text-accent duration-200">{{ $movie->title }}</a>
             <p class="mt-2 text-sm font-semibold text-gray-600">Release date: {{ $movie->release_date }}</p>
           </div>
         </div>
