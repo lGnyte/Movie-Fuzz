@@ -37,6 +37,14 @@ php artisan serve
 
 ## Functionalitati
 
+### Credentiale
+Dupa rularea seederelor, se pot folosi urmatoarele 2 conturi care au cateva recenzii postate.
+```
+Username: user1 ; Pass: 12345678
+Username: user2 ; Pass: 12345678
+```
+Acestia au recenzii postate pentru filmele din seria `Avengers` (filmele se pot cauta folosind pagina de search dupa keywordul `avengers`)
+
 ### Home page
 Pagina principala, unde pe langa un mesaj de bun venit, se afiseaza o lista cu cele mai populare filme (conform IMDB, nu dupa recenziile postate pe site) din ziua respectiva. Pentru acest proiect, pozele sunt facute sa apara la calitate redusa pentru a nu solicita prea mult reteaua.
 
